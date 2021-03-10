@@ -3,6 +3,7 @@ import { Button, Card, Col, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import './LeaguesCard.css'
 const LeaguesCard = (props) => {
     const { strLeague, strSport, idLeague } = props.league;
     const [leagueDetail, setLeagueDetail] = useState([]);
@@ -23,10 +24,10 @@ const LeaguesCard = (props) => {
                 <h6 className="text-center font-weight-bolder">{strLeague}</h6>
                 <p>Sport Type: {strSport}</p>
                 <Link to={`/league/${idLeague}`}>
-                    <Button>Explore <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon> </Button>
+                    <Button style={{ backgroundColor: '#4b9c98', border: 'none' }}>Explore <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon> </Button>
                 </Link>
             </Card>
-        </Col>
+        </Col >
     );
 };
 

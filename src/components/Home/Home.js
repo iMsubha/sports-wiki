@@ -27,11 +27,11 @@ const Home = () => {
     }, []);
     //188,220
     return (
-        <div style={dark ? { backgroundColor: '#0E0A2B' } : { backgroundColor: '#fff' }}>
+        <div style={dark ? { backgroundColor: '#4b9c98' } : { backgroundColor: '#fff' }}>
             <nav style={bannerStyle}>
                 <div>
                     <div className="d-flex justify-content-end">
-                        <FontAwesomeIcon className="text-light" onClick={mood} icon={faToggleOn} />
+                        <FontAwesomeIcon className="text-light mr-2" style={{ fontSize: '20px', height: '30px' }} onClick={mood} icon={faToggleOn} />
                     </div>
                     <h1 className="text-center text-light mt-5 p-5 font-italic">Sports Wiki</h1>
                 </div>
