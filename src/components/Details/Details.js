@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Moment from "react-moment";
 import { Col, Container, Image, Row } from "react-bootstrap";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faToggleOn } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faToggleOn } from '@fortawesome/free-solid-svg-icons'
 import maleLeagueImg from "../../images/male.png";
 import femaleLeagueImg from "../../images/female.png";
 import youtube from "../../icons/YouTube.png"
@@ -17,6 +17,28 @@ import bannerImage from '../../images/banner5.jpg'
 const Details = () => {
     const { leagueId } = useParams();
     const [leagueDetail, setLeagueDetail] = useState([]);
+    const {
+        strLogo,
+        strGender,
+        strLeague,
+        strCountry,
+        strSport,
+        dateFirstEvent,
+        strDescriptionEN,
+        strFanart2
+    } = leagueDetail;
+    const bannerStyle = {
+        backgroundImage: `linear-gradient(to bottom, rgba(245, 246, 252, 0.47), rgba(117, 19, 93, 0.3)), 
+        url(${strFanart2}),url(${bannerImage})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        height: '300px'
+    };
+    const dateToFormat = `${dateFirstEvent}`;
+    const [dark, setDark] = useState(false);
+    const mood = () => {
+        setDark(!dark);
+    }
     useEffect(() => {
         const url = `https://www.thesportsdb.com/api/v1/json/1/lookupleague.php?id=${leagueId}`;
         fetch(url)
@@ -24,40 +46,24 @@ const Details = () => {
             .then((data) => setLeagueDetail(data.leagues[0]));
     }, [leagueId]);
 
-    const {
-        strGender,
-        strLeague,
-        strCountry,
-        strSport,
-        dateFirstEvent,
-        strPoster,
-        strDescriptionEN,
-        strTwitter,
-        strFacebook,
-        strYoutube,
-        strFanart2
-    } = leagueDetail;
-    const dateToFormat = `${dateFirstEvent}`;
-    const bannerStyle = {
-        // backgroundImage: `url("../../images/banner5.jpg"),url(${strFanart2})`,
-        backgroundImage: `linear-gradient(to bottom, rgba(245, 246, 252, 0.47), rgba(117, 19, 93, 0.3)), 
-        url(${strFanart2}),url(${bannerImage})`,
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-        height: '300px'
-    };
-
     return (
-        <div>
-            <div style={bannerStyle} className="d-flex justify-content-end"></div>
-
+        <div style={dark ? { backgroundColor: '#172A41' } : { backgroundColor: '#fff' }}>
+            <div style={bannerStyle}>
+                <div className="d-flex justify-content-end">
+                    <FontAwesomeIcon className="mr-2" style={{ fontSize: '20px', height: '30px' }}
+                        color={'#4b9c98'} onClick={mood} icon={faToggleOn} />
+                </div>
+                <div className="d-flex justify-content-center mt-5">
+                    <Image src={strLogo} height={100}></Image>
+                </div>
+            </div>
             <Container className="rounded-lg mt-4" style={{ backgroundColor: "#4b9c98" }}>
                 <Row className=" d-flex justify-content-center align-items-center" >
-                    <Col sm={12} md={6} lg={6}>
-                        <h5 className="font-weight-bolder">{strLeague}</h5>
+                    <Col sm={12} md={6} lg={6} className="p-5">
+                        <h5 className="font-weight-bolder text-light">{strLeague}</h5>
                         <div className="pb-1">
                             <Image className="d-inline" src={foundedIcon} width={18}></Image>
-                            <small className="d-inline">
+                            <small className="d-inline text-light font-weight-bold">
                                 {" "}Founded :{" "}
                                 <Moment format="MMMM D, YYYY" withTitle>
                                     {dateToFormat}
@@ -66,15 +72,15 @@ const Details = () => {
                         </div>
                         <div className="pb-1">
                             <Image className="d-inline" src={countryIcon} width={18} />
-                            <small className="d-inline">{" "}Country :{" "}{strCountry}</small>
+                            <small className="d-inline text-light font-weight-bold">{" "}Country :{" "}{strCountry}</small>
                         </div>
                         <div className="pb-1">
                             <Image className="d-inline" src={sportsIcon} width={18} />
-                            <small className="d-inline">{" "}Sport Type :{" "}{strSport}</small>
+                            <small className="d-inline text-light font-weight-bold">{" "}Sport Type :{" "}{strSport}</small>
                         </div>
                         <div className="pb-1">
                             <Image className="d-inline" src={genderIcon} width={18} />
-                            <small className="d-inline">{" "}Gender :{" "}{strGender}</small>
+                            <small className="d-inline text-light font-weight-bold">{" "}Gender :{" "}{strGender}</small>
                         </div>
                     </Col>
                     <Col sm={12} md={6} lg={6} className="d-flex justify-content-center align-items-center">
@@ -110,7 +116,7 @@ const Details = () => {
                 <Image src={facebook} height={40}></Image>
                 <Image src={youtube} height={40}></Image>
             </footer>
-        </div >
+        </div>
     );
 };
 
