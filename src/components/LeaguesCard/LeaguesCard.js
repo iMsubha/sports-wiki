@@ -3,7 +3,7 @@ import { Button, Card, Col, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import './LeaguesCard.css'
+
 const LeaguesCard = (props) => {
     const { strLeague, strSport, idLeague } = props.league;
     const [leagueDetail, setLeagueDetail] = useState([]);
@@ -13,21 +13,21 @@ const LeaguesCard = (props) => {
             .then((res) => res.json())
             .then((data) => setLeagueDetail(data.leagues[0]));
     }, [idLeague]);
-    const { strLogo } = leagueDetail;
+    const { strBadge } = leagueDetail;
     return (
-        <Col>
+        <Col className="mt-5 p-2">
             <Card
-                className="mt-4 pt-5 pb-3 d-flex justify-content-center align-items-center"
+                className="d-flex justify-content-center align-items-center shadow-lg"
                 style={{ width: "250px", height: "280px" }}
             >
-                <Image className="mb-2" width={150} src={strLogo} />
+                <Image className="mb-3" width={90} src={strBadge} />
                 <h6 className="text-center font-weight-bolder">{strLeague}</h6>
-                <p>Sport Type: {strSport}</p>
+                <p><small>Sport Type: {strSport}</small></p>
                 <Link to={`/league/${idLeague}`}>
-                    <Button style={{ backgroundColor: '#4b9c98', border: 'none' }}>Explore <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon> </Button>
+                    <Button style={{ backgroundColor: '#4b9c98', border: 'none' }}>Explore  <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon> </Button>
                 </Link>
             </Card>
-        </Col >
+        </Col>
     );
 };
 

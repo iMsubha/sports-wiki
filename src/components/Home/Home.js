@@ -3,7 +3,7 @@ import { Container, Row } from "react-bootstrap";
 import LeaguesCard from "../LeaguesCard/LeaguesCard";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faToggleOn } from '@fortawesome/free-solid-svg-icons'
-import bannerImage from '../../images/banner2.jpg'
+import bannerImage from '../../images/banner5.jpg'
 const Home = () => {
     const [leagues, setLeagues] = useState([]);
     const [dark, setDark] = useState(false);
@@ -12,7 +12,7 @@ const Home = () => {
     }
     const bannerStyle = {
         // backgroundImage: `linear-gradient(to bottom,rgba(220,220,220,0.1), rgba(120,120,120,0.3)),url(${bannerImage})`,
-        backgroundImage: ` linear-gradient(to bottom, rgba(245, 246, 252, 0.47), rgba(117, 19, 93, 0.3)), url(${bannerImage})`,
+        backgroundImage: `linear-gradient(to bottom, rgba(245, 246, 252, 0.47), rgba(117, 19, 93, 0.3)), url(${bannerImage})`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
@@ -23,11 +23,12 @@ const Home = () => {
         const url = `https://www.thesportsdb.com/api/v1/json/1/all_leagues.php`;
         fetch(url)
             .then((res) => res.json())
-            .then((data) => setLeagues(data.leagues.slice(120, 130)));
+            .then((data) => setLeagues(data.leagues.slice(188, 220)));
     }, []);
     //188,220
+    //#4b9c98
     return (
-        <div style={dark ? { backgroundColor: '#4b9c98' } : { backgroundColor: '#fff' }}>
+        <div style={dark ? { backgroundColor: '#172A41' } : { backgroundColor: '#fff' }}>
             <nav style={bannerStyle}>
                 <div>
                     <div className="d-flex justify-content-end">
