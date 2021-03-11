@@ -17,6 +17,7 @@ import bannerImage from '../../images/banner5.jpg'
 const Details = () => {
     const { leagueId } = useParams();
     const [leagueDetail, setLeagueDetail] = useState([]);
+    console.log(leagueDetail);
     const {
         strLogo,
         strGender,
@@ -25,7 +26,10 @@ const Details = () => {
         strSport,
         dateFirstEvent,
         strDescriptionEN,
-        strFanart2
+        strFanart2,
+        strTwitter,
+        strFacebook,
+        strYoutube
     } = leagueDetail;
     const bannerStyle = {
         backgroundImage: `linear-gradient(to bottom, rgba(245, 246, 252, 0.47), rgba(117, 19, 93, 0.3)), 
@@ -45,7 +49,7 @@ const Details = () => {
             .then((res) => res.json())
             .then((data) => setLeagueDetail(data.leagues[0]));
     }, [leagueId]);
-
+    console.log(strTwitter);
     return (
         <div style={dark ? { backgroundColor: '#172A41' } : { backgroundColor: '#fff' }}>
             <div style={bannerStyle}>
@@ -112,9 +116,16 @@ const Details = () => {
         </p>
             </Container>
             <footer className="d-flex justify-content-center align-items-center mb-5 mt-5">
-                <Image src={twitter} height={40}></Image>
-                <Image src={facebook} height={40}></Image>
-                <Image src={youtube} height={40}></Image>
+
+                <a href={"https://" + strTwitter}>
+                    <Image src={twitter} height={40}></Image>
+                </a>
+                <a href={"https://" + strFacebook}>
+                    <Image src={facebook} height={40}></Image>
+                </a>
+                <a href={"https://" + strYoutube}>
+                    <Image src={youtube} height={40}></Image>
+                </a>
             </footer>
         </div>
     );
