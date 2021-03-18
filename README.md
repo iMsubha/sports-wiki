@@ -4,4 +4,4 @@ This project contains best-practice to work with React Router, API, Hooks [useSt
 
 - [API](https://www.thesportsdb.com/api/v1/json/1/all_sports.php)
 
-- [LIVE SITE]()
+- [LIVE SITE](https://hungry-bohr-2412b4.netlify.app/)
